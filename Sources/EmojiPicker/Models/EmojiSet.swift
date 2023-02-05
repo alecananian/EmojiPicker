@@ -21,11 +21,11 @@
 // SOFTWARE.
 
 /// An object that represents set of emojis.
-struct EmojiSet: Decodable {
+public struct EmojiSet: Decodable {
     /// Emoji categories.
-    let categories: [Category]
+    public let categories: [Category]
     /// Emojis dictionary from which you can get emojis by ID.
-    let emojis: [Emoji.ID: Emoji]
+    public let emojis: [Emoji.ID: Emoji]
     /// Aliases of keywords for emojis.
-    let aliases: [String: String]
+    public let aliases: [String: String]
 }

@@ -127,6 +127,16 @@ public final class EmojiPickerViewController: UIViewController {
         bindViewModel()
     }
     
+    public init(emojiSet: EmojiSet) {
+        viewModel = EmojiPickerViewModel(emojiSet: emojiSet)
+        
+        super.init(nibName: nil, bundle: nil)
+        modalPresentationStyle = .popover
+        
+        setupDelegates()
+        bindViewModel()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

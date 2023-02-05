@@ -21,11 +21,11 @@
 // SOFTWARE.
 
 /// An object that represents category of emojis.
-struct Category: Decodable {
+public struct Category: Decodable {
     /// Type-safe category type.
-    let type: CategoryType
+    public let type: CategoryType
     /// Identifiers of emojis.
-    let identifiers: [Emoji.ID]
+    public let identifiers: [Emoji.ID]
     
     enum CodingKeys: String, CodingKey {
         case type = "id"
@@ -34,7 +34,7 @@ struct Category: Decodable {
 }
 
 /// Type-safe representation of emoji categories.
-enum CategoryType: String, Decodable, CaseIterable {
+public enum CategoryType: String, Decodable, CaseIterable {
     case people
     case nature
     case foods

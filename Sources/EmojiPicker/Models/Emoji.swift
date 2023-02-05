@@ -21,19 +21,19 @@
 // SOFTWARE.
 
 /// An object that represents emoji.
-struct Emoji: Decodable, Identifiable {
+public struct Emoji: Decodable, Identifiable {
     /// Emoji identifier.
-    let id: String
+    public let id: String
     /// Name of an emoji.
-    let name: String
+    public let name: String
     /// Keywords for an emoji.
-    let keywords: [String]
+    public let keywords: [String]
     /// Skin tones.
-    let skins: [Skin]
+    public let skins: [Skin]
     /// Version in which the emoji appeared.
-    let version: Double
+    public let version: Double
     /// Skin tone number. We save it so user can use the skin he chose.
-    var skinToneIndex = 0
+    public var skinToneIndex = 0
     
     enum CodingKeys: String, CodingKey {
         case id, name, keywords, skins, version
@@ -44,7 +44,7 @@ extension Emoji {
     /// String emoji. For example: 😄
     ///
     /// Shows in the collection view.
-    var emoji: String {
+    public var emoji: String {
         return skins[skinToneIndex].native
     }
 }

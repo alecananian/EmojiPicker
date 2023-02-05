@@ -31,7 +31,7 @@ protocol EmojiManagerProtocol {
 }
 
 /// The class is responsible for getting a relevant set of emojis for iOS version.
-final class EmojiManager: EmojiManagerProtocol {
+public final class EmojiManager: EmojiManagerProtocol {
     
     // MARK: - Private Properties
     
@@ -71,9 +71,13 @@ final class EmojiManager: EmojiManagerProtocol {
         return Double(operatingSystemVersion.majorVersion) + Double(operatingSystemVersion.minorVersion) / 10
     }
     
-    // MARK: - Internal Methods
+    // MARK: - Public Methods
     
-    func provideEmojis() -> EmojiSet {
+    public init() {
+        
+    }
+    
+    public func provideEmojis() -> EmojiSet {
         guard let path = Bundle.module.path(forResource: emojiVersion, ofType: "json"),
               let data = try? Data(contentsOf: URL(fileURLWithPath: path))
         else {

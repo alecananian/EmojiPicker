@@ -59,6 +59,10 @@ final class EmojiPickerViewModel: EmojiPickerViewModelProtocol {
         emojiSet = emojiManager.provideEmojis()
     }
     
+    init(emojiSet: EmojiSet) {
+        self.emojiSet = emojiSet
+    }
+    
     // MARK: - Internal Methods
     
     func numberOfSections() -> Int {
