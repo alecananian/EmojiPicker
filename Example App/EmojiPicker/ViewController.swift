@@ -54,7 +54,7 @@ class ViewController: UIViewController {
 // MARK: - EmojiPickerDelegate
 
 extension ViewController: EmojiPickerDelegate {
-    func didGetEmoji(emoji: String) {
-        emojiButton.setTitle(emoji, for: .normal)
+    func didGetEmoji(emoji: Emoji) {
+        emojiButton.setTitle(emoji.emoji, for: .normal)
     }
 }

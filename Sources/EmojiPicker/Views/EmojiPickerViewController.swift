@@ -27,7 +27,7 @@ public protocol EmojiPickerDelegate: AnyObject {
     /// Provides chosen emoji.
     ///
     /// - Parameter emoji: String emoji.
-    func didGetEmoji(emoji: String)
+    func didGetEmoji(emoji: Emoji)
 }
 
 /// Emoji Picker view controller. 
@@ -160,7 +160,11 @@ public final class EmojiPickerViewController: UIViewController {
     private func bindViewModel() {
         viewModel.selectedEmoji.bind { [unowned self] emoji in
             feedbackGenerator?.impactOccurred()
-            delegate?.didGetEmoji(emoji: emoji)
+            if let delegate = delegate,
+               let emoji = emoji
+            {
+                delegate.didGetEmoji(emoji: emoji)
+            }
             
             if isDismissedAfterChoosing {
                 dismiss(animated: true, completion: nil)
@@ -238,7 +242,7 @@ extension EmojiPickerViewController: UICollectionViewDataSource, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmojiCollectionViewCell.identifier, for: indexPath) as? EmojiCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.configure(with: viewModel.emoji(at: indexPath))
+        cell.configure(with: viewModel.emoji(at: indexPath)?.emoji ?? "⚠️")
         return cell
     }
     

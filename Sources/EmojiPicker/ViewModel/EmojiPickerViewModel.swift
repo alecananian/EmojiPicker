@@ -25,7 +25,7 @@ import Foundation
 /// Protocol for a ViewModel which is being used in `EmojiPickerViewController`.
 protocol EmojiPickerViewModelProtocol {
     /// The observed variable that is responsible for the choice of emoji.
-    var selectedEmoji: Observable<String> { get set }
+    var selectedEmoji: Observable<Emoji?> { get set }
     /// The observed variable that is responsible for the choice of emoji category.
     var selectedEmojiCategoryIndex: Observable<Int> { get set }
     /// The method returns the number of categories with emojis.
@@ -33,7 +33,7 @@ protocol EmojiPickerViewModelProtocol {
     /// The method returns the number of emojis in the target section.
     func numberOfItems(in section: Int) -> Int
     /// This method is responsible for getting the emoji for the target indexPath.
-    func emoji(at indexPath: IndexPath) -> String
+    func emoji(at indexPath: IndexPath) -> Emoji?
     /// The method is responsible for getting the localized name of the emoji section.
     func sectionHeaderViewModel(for section: Int) -> String
 }
@@ -44,7 +44,7 @@ final class EmojiPickerViewModel: EmojiPickerViewModelProtocol {
     // MARK: - Internal Properties
     
     /// Observable object of selected emoji.
-    var selectedEmoji = Observable<String>(value: "")
+    var selectedEmoji = Observable<Emoji?>(value: nil)
     /// Observable object of selected category index of an emoji.
     var selectedEmojiCategoryIndex = Observable<Int>(value: 0)
     
@@ -73,9 +73,9 @@ final class EmojiPickerViewModel: EmojiPickerViewModelProtocol {
         return emojiSet.categories[section].identifiers.count
     }
     
-    func emoji(at indexPath: IndexPath) -> String {
+    func emoji(at indexPath: IndexPath) -> Emoji? {
         let name = emojiSet.categories[indexPath.section].identifiers[indexPath.row]
-        return emojiSet.emojis[name]?.emoji ?? "⚠️"
+        return emojiSet.emojis[name]
     }
     
     func sectionHeaderViewModel(for section: Int) -> String {
